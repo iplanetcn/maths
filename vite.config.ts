@@ -8,7 +8,7 @@
  * @FilePath: \math_test_questions_generator\vite.config.ts
  */
 import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 
 // https://vitejs.dev/config/
@@ -17,7 +17,7 @@ export default defineConfig({
     server: {
         host: '0.0.0.0'
     },
-    plugins: [svelte(), Unocss()],
+    plugins: [vue(), Unocss()],
     build: {
         outDir: 'docs'
     }

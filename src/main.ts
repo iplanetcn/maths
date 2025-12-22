@@ -7,12 +7,9 @@
  * @Description:
  * @FilePath: \math_test_questions_generator\src\main.ts
  */
-import App from './App.svelte'
+import { createApp } from 'vue'
+import App from './App.vue'
+import { router } from './router'
 import 'uno.css'
-import { mount } from 'svelte'
 
-const app = mount(App, {
-    target: document.getElementById('app')!
-})
-
-export default app
+createApp(App).use(router).mount('#app')
