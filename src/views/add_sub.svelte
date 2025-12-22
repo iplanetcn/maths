@@ -415,7 +415,7 @@
             </label>
         </span>
     </div>
-    <div class="mx-4 my-2 whitespace-nowrap flex items-center" />
+    <div class="mx-4 my-2 whitespace-nowrap flex items-center"></div>
 </div>
 <div
     class="text-center mb-6
@@ -490,14 +490,16 @@ print:hidden"
 
                 <!-- 10以内加法就36个，没法刷 -->
                 {#if !(currentRange === 10 && currentMethod === 'add')}
-                    <span
+                    <button
+                        type="button"
                         class="invisible cursor-pointer text-xs
                 group-hover:visible print:hidden ml-2"
                         on:click={() => refresh(index)}
                         title="重新生成本题"
+                        aria-label="重新生成本题"
                     >
                         <IconRefresh />
-                    </span>
+                    </button>
                 {/if}
             </div>
         {/each}
