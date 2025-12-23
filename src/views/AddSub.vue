@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="print:hidden text-center bg-sky-200 py-4">
+        <div class="print:hidden text-center bg-sky-200 py-4" hidden="hidden">
             新增分成题、拼音、田字格等功能，详情
             <a
                 class="text-blue-600 no-underline"
@@ -121,7 +121,6 @@
                     </label>
                 </span>
             </div>
-            <div class="mx-4 my-2 whitespace-nowrap flex items-center"></div>
         </div>
 
         <div class="text-center mb-6 print:hidden">
@@ -173,9 +172,8 @@
             class="relative container max-w-[800px] overflow-hidden mx-auto p-12 pb-20 bg-white"
         >
             <div
-                class="flex-grow flex-shrink-0 text-xl grid sm:grid-cols-2 md:grid-cols-3
-                       print:p-0 print:shadow-none print:grid-cols-3"
-                style="font-family: consolas;"
+                class="flex-grow flex-shrink-0 text-xl grid grid-cols-3 print:grid-cols-3 print:p-0 print:shadow-none"
+                style="font-family: consolas,serif;"
             >
                 <div
                     v-for="(item, index) in res"
@@ -191,7 +189,7 @@
                                 ? number
                                 : showRes
                                 ? `(${item.result})`
-                                : '(___)'
+                                : '(   )'
                         }}{{
                             item.methods[i] !== undefined
                                 ? operator[item.methods[i]] + ''
@@ -211,7 +209,7 @@
                     </button>
                 </div>
             </div>
-            <div v-if="qrcodeStr">
+            <div v-if="qrcodeStr" hidden="hidden">
                 <div class="flex items-center absolute right-0 bottom-0">
                     <div>扫一扫 查答案 &nbsp;</div>
                     <Qrcode :value="qrcodeStr" size="100" />
@@ -222,7 +220,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import Qrcode from '../components/Qrcode.vue'
 import IconRefresh from '../components/icon/Refresh.vue'
 
@@ -441,7 +439,7 @@ const generator = () => {
     return item
 }
 
-const handleQrode = () => {
+const handleQrcode = () => {
     const qrcodeRes: string[] = []
     res.value.forEach((item) => {
         qrcodeRes.push(item.result.toString(36).padStart(2, '_'))
@@ -468,7 +466,7 @@ const submit = () => {
         total.push(newItem)
     }
     res.value = total
-    handleQrode()
+    handleQrcode()
 }
 
 const printPage = () => {
@@ -493,7 +491,7 @@ const refresh = (index: number) => {
         }
         res.value[index] = newItem
     }
-    handleQrode()
+    handleQrcode()
 }
 </script>
 

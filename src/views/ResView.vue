@@ -1,9 +1,8 @@
 <template>
     <div>
         <div
-            class="container max-w-[800px] flex-grow flex-shrink-0 mx-auto p-12 shadow bg-white text-3xl grid sm:grid-cols-2 md:grid-cols-4
-                   print:p-0 print:shadow-none print:grid-cols-4"
-            style="font-family: consolas;"
+            class="container max-w-[800px] flex-grow flex-shrink-0 mx-auto p-12 shadow bg-white text-3xl grid grid-cols-4 print:grid-cols-4 print:p-0 print:shadow-none"
+            style="font-family: consolas,sans-serif;"
         >
             <pre
                 v-for="(item, index) in resultArr"

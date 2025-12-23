@@ -1,13 +1,5 @@
-/*
- * @Author: NMTuan
- * @Email: NMTuan@qq.com
- * @Date: 2022-06-21 19:41:22
- * @LastEditTime: 2022-06-27 11:36:46
- * @LastEditors: NMTuan
- * @Description:
- * @FilePath: \math_test_questions_generator\vite.config.ts
- */
 import { defineConfig } from 'vite'
+// @ts-ignore
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 
