@@ -164,20 +164,21 @@
         打印
       </button>
       <span>
-                <input
-                    id="showRes"
-                    class="peer"
-                    type="checkbox"
-                    v-model="showRes"
-                />
-                <label
-                    for="showRes"
-                    class="peer-checked:text-sky-500 peer-checked:font-bold
-                           peer-disabled:text-gray-400"
-                >
-                    显示结果
-                </label>
-            </span>
+          <input
+              id="showRes"
+              class="peer"
+              type="checkbox"
+              v-model="showRes"
+          />
+          <label
+              for="showRes"
+              class="peer-checked:text-sky-500 peer-checked:font-bold
+                     peer-disabled:text-gray-400"
+          >
+              显示结果
+          </label>
+      </span>
+      <router-link :to="resStr()" :hidden="res.length === 0">查看答案</router-link>
     </div>
 
     <div
@@ -291,6 +292,14 @@ const showRes = ref(false)
 const clearRes = () => {
   res.value = []
   qrcodeStr.value = ''
+}
+
+const resStr = () => {
+  const result: string[] = []
+  res.value.forEach((item) => {
+    result.push(item.result.toString(36).padStart(2, '_'))
+  })
+  return result.join('')
 }
 
 watch(currentMethod, (val) => {
