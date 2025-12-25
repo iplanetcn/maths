@@ -54,8 +54,7 @@
               value="addCarry"
             />
             <label
-              class="peer-checked:text-sky-500 peer-checked:font-bold
-                       peer-disabled:text-gray-400"
+              class="peer-checked:text-sky-500 peer-checked:font-bold peer-disabled:text-gray-400"
               for="addCarry"
             >
                 可进位
@@ -71,8 +70,7 @@
               value="subBack"
             />
             <label
-              class="peer-checked:text-sky-500 peer-checked:font-bold
-                       peer-disabled:text-gray-400"
+              class="peer-checked:text-sky-500 peer-checked:font-bold peer-disabled:text-gray-400"
               for="subBack"
             >
                 可退位
@@ -87,8 +85,7 @@
               value="repeat"
             />
             <label
-              class="peer-checked:text-sky-500 peer-checked:font-bold
-                       peer-disabled:text-gray-400"
+              class="peer-checked:text-sky-500 peer-checked:font-bold  peer-disabled:text-gray-400"
               for="repeat"
             >
                 可重复
@@ -103,8 +100,7 @@
               value="cloze"
             />
             <label
-              class="peer-checked:text-sky-500 peer-checked:font-bold
-                       peer-disabled:text-gray-400"
+              class="peer-checked:text-sky-500 peer-checked:font-bold peer-disabled:text-gray-400"
               for="cloze"
             >
                 填空题
@@ -114,7 +110,7 @@
 
       <div class="mx-4 my-2 whitespace-nowrap flex items-center">
         <strong>占位符：</strong>
-        <span v-for="(placeholder, index) in placeholders" :key="placeholder.value">
+        <span v-for="(placeholder, index) in placeholders" :key="placeholder.name">
           <input
             :id="`placeholder${index}`"
             v-model="currentPlaceholder"
@@ -189,12 +185,13 @@
           <span class="text-xs text-gray-300 mr-2">
               {{ String(index + 1).padStart(2, '0') }}.
           </span>
+
           <span v-for="(number, i) in item.numbers" :key="i" class="text-2xl">
             {{
               number !== 'cloze'
                 ? number
                 : showRes
-                  ? `(${item.result})`
+                  ? (isUnderscore(currentPlaceholder) ? `(${item.result})` : `${currentPlaceholder.prefix}${item.result}${currentPlaceholder.suffix}`)
                   : currentPlaceholder.value
             }}{{
               item.methods[i] !== undefined
@@ -245,15 +242,21 @@ const ranges = [10, 20, 50, 100]
 const qrcodeStr = ref('')
 
 interface Placeholder {
+  name: string,
   label: string,
-  value: string
+  value: string,
+  prefix: string,
+  suffix: string
+}
+
+function isUnderscore(placeholder: Placeholder) {
+  return placeholder.name === 'underscore'
 }
 
 const placeholders: Placeholder[] = [
-  {label: '括号', value: '(   )'},
-  {label: '下划线', value: '___'},
-  {label: '方括号', value: '[   ]'},
-  {label: '方框', value: '⬜️'}
+  {name: 'brackets', label: '括号', value: '(   )', prefix: '(', suffix: ')'},
+  {name: 'underscore', label: '下划线', value: '___', prefix: '', suffix: ''},
+  {name: 'square brackets', label: '方括号', value: '[   ]', prefix: '[', suffix: ']'},
 ];
 
 const currentPlaceholder = ref<Placeholder>(
