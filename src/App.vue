@@ -1,6 +1,6 @@
 <template>
     <main class="relative">
-        <router-view />
+      <router-view/>
     </main>
 </template>
 
@@ -12,6 +12,7 @@
     padding: 0;
     background-color: #e2e2e2;
 }
+
 :global(body) {
     margin: 0;
     padding: 0;

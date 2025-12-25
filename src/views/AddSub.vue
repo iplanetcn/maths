@@ -4,219 +4,212 @@
       <div class="mx-4 my-2 whitespace-nowrap flex items-center">
         <strong>范围：</strong>
         <span v-for="(range, index) in ranges" :key="range">
-                    <input
-                        class="peer"
-                        type="radio"
-                        :id="`range${index}`"
-                        :value="range"
-                        v-model="currentRange"
-                        name="range"
-                    />
-                    <label
-                        :for="`range${index}`"
-                        class="peer-checked:text-sky-500 peer-checked:font-bold"
-                    >
-                        {{ range }}
-                    </label>
-                </span>
+          <input
+            :id="`range${index}`"
+            v-model="currentRange"
+            :value="range"
+            class="peer"
+            name="range"
+            type="radio"/>
+          <label
+            :for="`range${index}`"
+            class="peer-checked:text-sky-500 peer-checked:font-bold">
+          {{ range }}
+          </label>
+        </span>
       </div>
       <div class="mx-4 my-2 whitespace-nowrap flex items-center">
         <strong>运算：</strong>
         <span v-for="(label, key, index) in methods" :key="key">
-                    <input
-                        class="peer"
-                        type="radio"
-                        :id="`method${index}`"
-                        :value="key"
-                        v-model="currentMethod"
-                        name="method"
-                    />
-                    <label
-                        :for="`method${index}`"
-                        class="peer-checked:text-sky-500 peer-checked:font-bold"
-                    >
-                        {{ label }}
-                    </label>
+            <input
+              :id="`method${index}`"
+              v-model="currentMethod"
+              :value="key"
+              class="peer"
+              name="method"
+              type="radio"
+            />
+            <label
+              :for="`method${index}`"
+              class="peer-checked:text-sky-500 peer-checked:font-bold"
+            >
+                {{ label }}
+            </label>
                 </span>
       </div>
       <div class="mx-4 my-2 whitespace-nowrap flex items-center">
         <strong>运算数：</strong>
         <span class="mx-2">{{ num }}</span>
-        <input type="range" min="2" max="4" v-model.number="num"/>
+        <input v-model.number="num" max="4" min="2" type="range"/>
       </div>
       <div class="mx-4 my-2 whitespace-nowrap flex items-center">
         <strong>规则：</strong>
         <span>
-                    <input
-                        id="addCarry"
-                        class="peer"
-                        type="checkbox"
-                        value="addCarry"
-                        v-model="rules"
-                        :disabled="currentMethod === 'sub'"
-                    />
-                    <label
-                        for="addCarry"
-                        class="peer-checked:text-sky-500 peer-checked:font-bold
-                               peer-disabled:text-gray-400"
-                    >
-                        可进位
-                    </label>
-                </span>
+            <input
+              id="addCarry"
+              v-model="rules"
+              :disabled="currentMethod === 'sub'"
+              class="peer"
+              type="checkbox"
+              value="addCarry"
+            />
+            <label
+              class="peer-checked:text-sky-500 peer-checked:font-bold
+                       peer-disabled:text-gray-400"
+              for="addCarry"
+            >
+                可进位
+            </label>
+        </span>
         <span>
-                    <input
-                        id="subBack"
-                        class="peer"
-                        type="checkbox"
-                        value="subBack"
-                        v-model="rules"
-                        :disabled="currentMethod === 'add' || currentRange === 10"
-                    />
-                    <label
-                        for="subBack"
-                        class="peer-checked:text-sky-500 peer-checked:font-bold
-                               peer-disabled:text-gray-400"
-                    >
-                        可退位
-                    </label>
-                </span>
+            <input
+              id="subBack"
+              v-model="rules"
+              :disabled="currentMethod === 'add' || currentRange === 10"
+              class="peer"
+              type="checkbox"
+              value="subBack"
+            />
+            <label
+              class="peer-checked:text-sky-500 peer-checked:font-bold
+                       peer-disabled:text-gray-400"
+              for="subBack"
+            >
+                可退位
+            </label>
+        </span>
         <span>
-                    <input
-                        id="repeat"
-                        class="peer"
-                        type="checkbox"
-                        value="repeat"
-                        v-model="rules"
-                    />
-                    <label
-                        for="repeat"
-                        class="peer-checked:text-sky-500 peer-checked:font-bold
-                               peer-disabled:text-gray-400"
-                    >
-                        可重复
-                    </label>
-                </span>
+            <input
+              id="repeat"
+              v-model="rules"
+              class="peer"
+              type="checkbox"
+              value="repeat"
+            />
+            <label
+              class="peer-checked:text-sky-500 peer-checked:font-bold
+                       peer-disabled:text-gray-400"
+              for="repeat"
+            >
+                可重复
+            </label>
+        </span>
         <span>
-                    <input
-                        id="cloze"
-                        class="peer"
-                        type="checkbox"
-                        value="cloze"
-                        v-model="rules"
-                    />
-                    <label
-                        for="cloze"
-                        class="peer-checked:text-sky-500 peer-checked:font-bold
-                               peer-disabled:text-gray-400"
-                    >
-                        填空题
-                    </label>
-                </span>
+            <input
+              id="cloze"
+              v-model="rules"
+              class="peer"
+              type="checkbox"
+              value="cloze"
+            />
+            <label
+              class="peer-checked:text-sky-500 peer-checked:font-bold
+                       peer-disabled:text-gray-400"
+              for="cloze"
+            >
+                填空题
+            </label>
+        </span>
       </div>
 
       <div class="mx-4 my-2 whitespace-nowrap flex items-center">
         <strong>占位符：</strong>
         <span v-for="(placeholder, index) in placeholders" :key="placeholder.value">
-                      <input
-                          class="peer"
-                          type="radio"
-                          :id="`placeholder${index}`"
-                          :value="placeholder"
-                          v-model="currentPlaceholder"
-                          name="placeholder"
-                      />
-                      <label
-                          :for="`placeholder${index}`"
-                          class="peer-checked:text-sky-500 peer-checked:font-bold"
-                      >
-                          {{ placeholder.label }}
-                      </label>
-                  </span>
+          <input
+            :id="`placeholder${index}`"
+            v-model="currentPlaceholder"
+            :value="placeholder"
+            class="peer"
+            name="placeholder"
+            type="radio"
+          />
+          <label
+            :for="`placeholder${index}`"
+            class="peer-checked:text-sky-500 peer-checked:font-bold"
+          >
+              {{ placeholder.label }}
+          </label>
+        </span>
       </div>
     </div>
 
     <div class="text-center mb-6 print:hidden">
-            <span>
-                <strong>题数：</strong>
-                {{ resLen }}
-                <input
-                    type="range"
-                    name="points"
-                    min="1"
-                    max="50"
-                    v-model.number="resLen"
-                />
-            </span>
+      <span>
+          <strong>题数：</strong>
+          {{ resLen }}
+          <input
+            v-model.number="resLen"
+            max="50"
+            min="1"
+            name="points"
+            type="range"
+          />
+      </span>
       <button
-          class="bg-sky-500 border-none text-white px-4 py-1 cursor-pointer hover:bg-sky-400"
-          @click="submit"
+        class="bg-sky-500 border-none text-white px-4 py-1 cursor-pointer hover:bg-sky-400"
+        @click="submit"
       >
         生成
       </button>
       <button
-          class="bg-sky-500 border-none text-white px-4 py-1 cursor-pointer
-                       hover:bg-sky-400
-                       disabled:bg-neutral-400 disabled:text-neutral-200 disabled:cursor-not-allowed
-                       disabled:hover:bg-neutral-400"
-          :disabled="res.length === 0"
-          @click="printPage"
+        :disabled="res.length === 0"
+        class="bg-sky-500 border-none text-white px-4 py-1 cursor-pointer hover:bg-sky-400 disabled:bg-neutral-400 disabled:text-neutral-200 disabled:cursor-not-allowed disabled:hover:bg-neutral-400"
+        @click="printPage"
       >
         打印
       </button>
       <span>
-          <input
-              id="showRes"
-              class="peer"
-              type="checkbox"
-              v-model="showRes"
-          />
-          <label
-              for="showRes"
-              class="peer-checked:text-sky-500 peer-checked:font-bold
-                     peer-disabled:text-gray-400"
-          >
-              显示结果
-          </label>
+        <input
+          id="showRes"
+          v-model="showRes"
+          class="peer"
+          type="checkbox"
+        />
+        <label
+          class="peer-checked:text-sky-500 peer-checked:font-bold peer-disabled:text-gray-400"
+          for="showRes">
+            显示结果
+        </label>
       </span>
-      <router-link :to="resStr()" :hidden="res.length === 0">查看答案</router-link>
+      <router-link :hidden="res.length === 0" :to="resStr()">查看答案</router-link>
     </div>
 
     <div
-        class="relative container max-w-[800px] overflow-hidden mx-auto p-12 pb-20 bg-white"
+      class="relative container max-w-[800px] overflow-hidden mx-auto p-12 pb-20 bg-white"
     >
       <div
-          class="flex-grow flex-shrink-0 text-xl grid grid-cols-3 print:grid-cols-3 print:p-0 print:shadow-none"
-          style="font-family: consolas,serif;"
+        class="flex-grow flex-shrink-0 text-xl grid grid-cols-3 print:grid-cols-3 print:p-0 print:shadow-none"
+        style="font-family: consolas,serif;"
       >
         <div
-            v-for="(item, index) in res"
-            :key="index"
-            class="flex items-center mb-6.5 group"
+          v-for="(item, index) in res"
+          :key="index"
+          class="flex items-center mb-6.5 group"
         >
-                    <span class="text-xs text-gray-300 mr-2">
-                        {{ String(index + 1).padStart(2, '0') }}.
-                    </span>
-          <span class="text-3xl" v-for="(number, i) in item.numbers" :key="i">
-                        {{
+          <span class="text-xs text-gray-300 mr-2">
+              {{ String(index + 1).padStart(2, '0') }}.
+          </span>
+          <span v-for="(number, i) in item.numbers" :key="i" class="text-2xl">
+            {{
               number !== 'cloze'
-                  ? number
-                  : showRes
-                      ? `(${item.result})`
-                      : currentPlaceholder.value
+                ? number
+                : showRes
+                  ? `(${item.result})`
+                  : currentPlaceholder.value
             }}{{
               item.methods[i] !== undefined
-                  ? operator[item.methods[i]] + ''
-                  : ''
+                ? operator[item.methods[i]] + ''
+                : ''
             }}
-                    </span>
+          </span>
 
           <button
-              v-if="!(currentRange === 10 && currentMethod === 'add')"
-              type="button"
-              class="invisible cursor-pointer text-xs group-hover:visible print:hidden ml-2"
-              @click="refresh(index)"
-              title="重新生成本题"
-              aria-label="重新生成本题"
+            v-if="!(currentRange === 10 && currentMethod === 'add')"
+            aria-label="重新生成本题"
+            class="invisible cursor-pointer text-xs group-hover:visible print:hidden ml-2"
+            title="重新生成本题"
+            type="button"
+            @click="refresh(index)"
           >
             <IconRefresh/>
           </button>
@@ -264,25 +257,25 @@ const placeholders: Placeholder[] = [
 ];
 
 const currentPlaceholder = ref<Placeholder>(
-    localStorage.getItem('currentPlaceholder') ? JSON.parse(localStorage.getItem('currentPlaceholder') as string) : placeholders[0]
+  localStorage.getItem('currentPlaceholder') ? JSON.parse(localStorage.getItem('currentPlaceholder') as string) : placeholders[0]
 )
 
 const currentMethod = ref<MethodKey>(
-    (localStorage.getItem('currentMethod') as MethodKey) || 'add'
+  (localStorage.getItem('currentMethod') as MethodKey) || 'add'
 )
 
 const currentRange = ref<number>(
-    localStorage.getItem('currentRange') ? parseInt(localStorage.getItem('currentRange') as string) : 10
+  localStorage.getItem('currentRange') ? parseInt(localStorage.getItem('currentRange') as string) : 10
 )
 
 const num = ref<number>(
-    localStorage.getItem('num') ? JSON.parse(localStorage.getItem('num') as string) : 2
+  localStorage.getItem('num') ? JSON.parse(localStorage.getItem('num') as string) : 2
 )
 const rules = ref<string[]>(
-    localStorage.getItem('rules') ? JSON.parse(localStorage.getItem('rules') as string) : []
+  localStorage.getItem('rules') ? JSON.parse(localStorage.getItem('rules') as string) : []
 )
 const resLen = ref<number>(
-    localStorage.getItem('resLen') ? parseInt(localStorage.getItem('resLen') as string) : 50
+  localStorage.getItem('resLen') ? parseInt(localStorage.getItem('resLen') as string) : 50
 )
 
 const res = ref<any[]>([])
@@ -354,11 +347,11 @@ watch(resLen, (val) => {
 })
 
 watch(
-    [currentRange, currentMethod],
-    () => {
-      document.title = `${currentRange.value}以内${methods[currentMethod.value]}`
-    },
-    {immediate: true}
+  [currentRange, currentMethod],
+  () => {
+    document.title = `${currentRange.value}以内${methods[currentMethod.value]}`
+  },
+  {immediate: true}
 )
 
 const random = (min = 0, max: number = currentRange.value): number => {
@@ -428,11 +421,11 @@ const handleSub = () => {
       }
     })
     numbers = results.reduce<(number | string)[]>(
-        (total, item) => {
-          total.push(parseInt(item.join('')))
-          return total
-        },
-        [a]
+      (total, item) => {
+        total.push(parseInt(item.join('')))
+        return total
+      },
+      [a]
     )
   }
 

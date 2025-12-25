@@ -2,16 +2,14 @@
   <div>
     <div
         class="container max-w-[800px] flex-grow flex-shrink-0 mx-auto p-12 shadow bg-white text-3xl grid grid-cols-4 print:grid-cols-4 print:p-0 print:shadow-none"
-        style="font-family: consolas,sans-serif;"
-    >
+        style="font-family: consolas,sans-serif;">
       <div
           v-for="(item, index) in resultArr"
           :key="index"
-          class="flex items-center justify-center"
-      >
-                <span class="text-xs text-gray-400 mr-2">
-                  {{ index + 1 }}.
-                </span>
+          class="flex items-center justify-center">
+            <span class="text-xs text-gray-400 mr-2">
+              {{ index + 1 }}.
+            </span>
         {{ String(item).padStart(2, ' ') }}
       </div>
     </div>
@@ -25,7 +23,7 @@
 
 <script setup lang="ts">
 import {computed, onMounted} from 'vue'
-import {useRoute, useRouter, RouterLink} from 'vue-router'
+import {RouterLink, useRoute, useRouter} from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()

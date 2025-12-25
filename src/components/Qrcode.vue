@@ -1,9 +1,9 @@
 <template>
-    <img :src="image" :alt="value" :class="className" />
+  <img :alt="value" :class="className" :src="image"/>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import {onMounted, ref, watch} from 'vue'
 import QrCode from 'qrious'
 
 const props = withDefaults(
