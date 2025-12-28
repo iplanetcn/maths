@@ -186,7 +186,7 @@
               {{ String(index + 1).padStart(2, '0') }}.
           </span>
 
-          <span v-for="(number, i) in item.numbers" :key="i" class="text-2xl">
+          <span v-for="(number, i) in item.numbers" :key="i" class="text-2xl" :style="{ 'white-space': number === 'cloze' ? 'pre' : 'normal' }">
             {{
               number !== 'cloze'
                 ? number
@@ -254,9 +254,9 @@ function isUnderscore(placeholder: Placeholder) {
 }
 
 const placeholders: Placeholder[] = [
-  {name: 'brackets', label: '括号', value: '(   )', prefix: '(', suffix: ')'},
+  {name: 'brackets', label: '括号', value: '(     )', prefix: '(', suffix: ')'},
   {name: 'underscore', label: '下划线', value: '___', prefix: '', suffix: ''},
-  {name: 'square brackets', label: '方括号', value: '[   ]', prefix: '[', suffix: ']'},
+  {name: 'square brackets', label: '方括号', value: '[     ]', prefix: '[', suffix: ']'},
 ];
 
 const currentPlaceholder = ref<Placeholder>(

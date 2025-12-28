@@ -11,6 +11,6 @@ export default defineConfig({
     },
     plugins: [vue(), Unocss()],
     build: {
-        outDir: 'docs'
+        outDir: 'build'
     }
 })
