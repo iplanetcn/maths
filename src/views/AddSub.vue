@@ -106,6 +106,21 @@
                 填空题
             </label>
         </span>
+        <span>
+            <input
+              id="blance"
+              v-model="rules"
+              class="peer"
+              type="checkbox"
+              value="blance"
+            />
+            <label
+              class="peer-checked:text-sky-500 peer-checked:font-bold peer-disabled:text-gray-400"
+              for="blance"
+            >
+                平衡
+            </label>
+        </span>
       </div>
 
       <div class="mx-4 my-2 whitespace-nowrap flex items-center">
@@ -466,7 +481,30 @@ const generator = () => {
   }
 
   if (rules.value.includes('cloze')) {
-    const clozeIndex = random(0, item.numbers.length - 1)
+    // 计算总运算数（包括结果）
+    const totalNumbers = item.numbers.length + 1
+    let clozeIndex
+    
+    if (totalNumbers % 2 === 0) {
+      // 当总运算数为偶数时，随机分配placeholder在左右两边
+      // 这样可以确保左右两边的运算数个数平衡
+      if (random(0, 1) === 0) {
+        // 随机选择将placeholder放在左边
+        clozeIndex = random(0, item.numbers.length - 1)
+      } else {
+        // 随机选择将placeholder放在右边（结果位置）
+        item.numbers.push(item.result)
+        item.methods.push(4)
+        clozeIndex = item.numbers.length - 1
+        item.result = item.numbers[clozeIndex]
+        item.numbers[clozeIndex] = 'cloze'
+        return item
+      }
+    } else {
+      // 总运算数为奇数时，保持原有随机逻辑
+      clozeIndex = random(0, item.numbers.length - 1)
+    }
+    
     item.numbers.push(item.result)
     item.methods.push(4)
     item.result = item.numbers[clozeIndex]

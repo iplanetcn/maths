@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmap-content xmlns="urn:xmind:xmap:xmlns:content:2.0">
+  <sheet id="sheet1" title="多环境支持">
+    <topic id="topic1" title="多环境支持">
+      <children>
+        <topic id="topic2" title="三个不同的环境">
+          <children>
+            <topic id="topic3" title="开发环境，用于日常的开发，一般有未完成的功能模块" />
+            <topic id="topic4" title="测试环境，用于测试，以及为产品经理进行功能验证" />
+            <topic id="topic5" title="生产环境，提交到 App Store 供终端用户使用的版本" />
+          </children>
+        </topic>
+        <topic id="topic6" title="Xcode 构建基础概念">
+          <children>
+            <topic id="topic7" title="Xcode Project，用于组织源代码文件和资源文件" />
+            <topic id="topic8" title="Xcode Target，用来定义如何构建出一个产品" />
+            <topic id="topic9" title="Build Setting，保存了构建过程中需要用到的信息，它以一个变量的形式而存在" />
+          </children>
+        </topic>
+        <topic id="topic10" title="Moments App 构建配置">
+          <children>
+            <topic id="topic11" title="Build Configuration">
+              <children>
+                <topic id="topic12" title="通过 Build Configuration 来分组和管理不同组合的 Build Setting 集合，然后传递给 Xcode 构建系统进行编译" />
+                <topic id="topic13" title="有了 Build Configuration 以后，能为同一个 Build Setting 设置不同的值" />
+              </children>
+            </topic>
+            <topic id="topic14" title="Xcode Scheme">
+              <children>
+                <topic id="topic15" title="Moments App 项目有三个 Scheme 来分别代表三个环境，Moments Scheme 用于开发环境，Moments-internal Scheme 用于测试环境，Moments-AppStore Scheme 用于生产环境" />
+              </children>
+            </topic>
+          </children>
+        </topic>
+        <topic id="topic16" title="xcconfig 配置文件">
+          <children>
+            <topic id="topic17" title="xcconfig 概念及其作用">
+              <children>
+                <topic id="topic18" title="Setting 的格式、命名规范、Build Setting 的最后生效值、优先级覆盖情况" />
+              </children>
+            </topic>
+            <topic id="topic19" title="Moments App xcconfig 配置文件">
+              <children>
+                <topic id="topic20" title="Shared 文件用于保存分享到整个 App 的 Build Setting" />
+                <topic id="topic21" title="Project，保存 Xcode Project 级别的 Build Setting" />
+                <topic id="topic22" title="Target，保存 Xcode Target 级别的 Build Setting" />
+              </children>
+            </topic>
+          </children>
+        </topic>
+      </children>
+    </topic>
+  </sheet>
+</xmap-content>
